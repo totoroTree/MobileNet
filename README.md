@@ -112,8 +112,8 @@ python ./tools/tf_convert_data.py
 ```
 
 2. Mobify './script/train_mobilenet_on_kitti.sh' according to your environment.
-1) CHECK_POINT is the folder where store the pretrained weight. 
-3) For the pretrained weight, please update the path to pretrained weight files inside file "checkpoint"
+    a. CHECK_POINT is the folder where store the pretrained weight. 
+    b. For the pretrained weight, please update the path to pretrained weight files inside file "checkpoint"
 	MobileNet/data/mobilenetdet-model/
 	                  |->checkpoint
                       |-> graph.pbtxt

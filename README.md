@@ -49,6 +49,22 @@ TF 1.0.1(native pip install), TF 1.1.0(build from source, optimization flag '-ma
 > Image Size: (224, 224, 3), Batch Size: 1
 
 ## Usage
+0. Prepare Tensorflow/models/. The code for models has not been included in the tensorflow if you install tensorflow through "pip install tensorflow-gpu", so please download the code for models.
+
+a) download models
+```
+sudo git clone --recurse-submodules https://github.com/tensorflow/models
+```
+
+b) complie protobuf. Run protoc at the right path, then lots of *.py files would be generated.
+```
+/usr/local/lib/python2.7/dist-packages/tensorflow/models/research$ sudo protoc object_detection/protos/*.proto --python_out=.
+```
+
+c) add path
+```
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+```
 
 ### Train on Imagenet
 
@@ -69,7 +85,7 @@ python ./scripts/time_benchmark.py
 
 1. Prepare KITTI data.
 
-After download KITTI data, you need to split it data into train/val set.
+After download KITTI data (KITTI 2D object detection), you need to split it data into train/val set.
 ```
 cd /path/to/kitti_root
 mkdir ImageSets
@@ -77,7 +93,8 @@ cd ./ImageSets
 ls ../training/image_2/ | grep ".png" | sed s/.png// > trainval.txt
 python ./tools/kitti_random_split_train_val.py
 ```
-kitti_root floder then look like below
+
+kitti_root floder then looks like below
 ```
 kitti_root/
                   |->training/
@@ -89,7 +106,9 @@ kitti_root/
                         |-> trainval.txt
                         |-> train.txt
                         L-> val.txt
+```
 Modified**
+```
 data/KITTI/
                   |->training/
                   |     |-> image_2/00****.png
@@ -104,6 +123,7 @@ data/KITTI/
                         L->train_***.tfrecord
 
 ```
+
 Then convert it into tfrecord. Please modify the output folder to store the tfrecord files, here for me, I've used:
 --output_dir=./MobileNet/data/KITTI/tfrecord
 ```
@@ -143,8 +163,11 @@ bash ./script/train_mobilenetdet_on_kitti.sh
 
 ```
 tensorboard --logdir output/mobilenetdet-model/
-
 ```
+
+5. Verification
+
+
 
 > The code of this subject is largely based on SqueezeDet & SSD-Tensorflow.
 > I would appreciated if you could feed back any bug.
@@ -174,3 +197,7 @@ When using RMSprop training strategy, the checkpoint file size should be almost 
 [SSD-Tensorflow](https://github.com/balancap/SSD-Tensorflow)
 
 [SqueezeDet](https://github.com/BichenWuUCB/squeezeDet)
+
+[Network Analysis] (https://github.com/cwlacewe/netscope)
+
+[TF Model Usage]  https://lijiancheng0614.github.io/2017/08/22/2017_08_22_TensorFlow-Object-Detection-API/

@@ -112,22 +112,38 @@ python ./tools/tf_convert_data.py
 ```
 
 2. Mobify './script/train_mobilenet_on_kitti.sh' according to your environment.
+
 a. CHECK_POINT is the folder where store the pretrained weight. 
+
 b. For the pretrained weight, please update the path to pretrained weight files inside file "checkpoint"
+
+```
 MobileNet/data/mobilenetdet-model/
 	              |->checkpoint
                       |-> graph.pbtxt
                       L-> model.ckpt-906808.data-00000-of-00001
                       |-> model.ckpt-906808.index
                       L-> model.ckpt-906808.meta
+```
 
 c. update the path to pretrained weight files inside the file "checkpoint":
+
+```
 model_checkpoint_path: "/MobileNet/data/mobilenetdet-model/model.ckpt-906808"
 all_model_checkpoint_paths: "/MobileNet/data/mobilenetdet-model/model.ckpt-906808"
+```
 
+3. Start training
 
 ```
 bash ./script/train_mobilenetdet_on_kitti.sh
+```
+
+4. Track the training process on Tensorboard
+
+```
+tensorboard --logdir output/mobilenetdet-model/
+
 ```
 
 > The code of this subject is largely based on SqueezeDet & SSD-Tensorflow.

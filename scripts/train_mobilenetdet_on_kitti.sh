@@ -7,13 +7,13 @@
 # ./scripts/train_mobilenetdet_on_kitti.sh
 
 # Where the checkpoint and logs will be saved to.
-TRAIN_DIR=/tmp/mobilenetdet-model
+TRAIN_DIR=/home/lei/projects/01_dl/MobileNet/output/mobilenetdet-model
 
 # Where the dataset is saved to.
-DATASET_DIR=/home/zehao/PycharmProjects/MobileNet/data/KITTI
+DATASET_DIR=/home/lei/projects/01_dl/MobileNet/data/KITTI/tfrecord
 
 # Where the checkpoint file stored.
-CHECK_POINT=/home/zehao/PycharmProjects/MobileNet/model
+CHECK_POINT=/home/lei/projects/01_dl/MobileNet/data/mobilenetdet-model
 
 # Run training.
 python train_object_detector.py \
@@ -26,7 +26,7 @@ python train_object_detector.py \
   --model_name=mobilenetdet \
   --preprocessing_name=mobilenetdet \
   --width_multiplier=1.0 \
-  --max_number_of_steps=1000000 \
+  --max_number_of_steps=1000 \
   --batch_size=10 \
   --save_interval_secs=240 \
   --save_summaries_secs=60 \

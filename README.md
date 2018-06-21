@@ -89,13 +89,39 @@ kitti_root/
                         |-> trainval.txt
                         |-> train.txt
                         L-> val.txt
+Modified**
+data/KITTI/
+                  |->training/
+                  |     |-> image_2/00****.png
+                  |     L-> label_2/00****.txt
+                  |->testing/
+                  |     L-> image_2/00****.png
+                  L->ImageSets/
+                        |-> trainval.txt
+                        |-> train.txt
+                        L-> val.txt
+                   L->tfrecord/
+                        L->train_***.tfrecord
+
 ```
-Then convert it into tfrecord.
+Then convert it into tfrecord. Please modify the output folder to store the tfrecord files, here for me, I've used:
+--output_dir=./MobileNet/data/KITTI/tfrecord
 ```
 python ./tools/tf_convert_data.py
+
 ```
 
 2. Mobify './script/train_mobilenet_on_kitti.sh' according to your environment.
+1) CHECK_POINT is the folder where store the pretrained weight. 
+3) For the pretrained weight, please update the path to pretrained weight files inside file "checkpoint"
+	MobileNet/data/mobilenetdet-model/
+	                  |->checkpoint
+                      |-> graph.pbtxt
+                      L-> model.ckpt-906808.data-00000-of-00001
+                      |-> model.ckpt-906808.index
+                      L-> model.ckpt-906808.meta
+
+
 ```
 bash ./script/train_mobilenetdet_on_kitti.sh
 ```

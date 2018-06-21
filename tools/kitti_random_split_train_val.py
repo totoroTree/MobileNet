@@ -1,6 +1,6 @@
 import numpy as np
 
-image_set_dir = './KITTI/ImageSets'
+image_set_dir = '/home/lei/projects/01_dl/MobileNet/KITTI/ImagesSets'
 trainval_file = image_set_dir+'/trainval.txt'
 train_file = image_set_dir+'/train.txt'
 val_file = image_set_dir+'/val.txt'
